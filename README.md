@@ -4,7 +4,7 @@ This is an educational project for me to learn and apply ideas involving http an
 
 ## Project Description
 
-* This project will involve building a command line tool that interacts with the API of [Coingecko.com].
+* This project will involve building a command line tool that interacts with the API of [Coingecko.com](https://www.coingecko.com/).
 
 * The command line tool will display the top trending cryptocurrencies for any given day.
 
