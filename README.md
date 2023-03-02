@@ -4,8 +4,18 @@ This is an educational project for me to learn and apply ideas involving http an
 
 ## Project Description
 
-* This project will involve building a command line tool that interacts with the API of [Coingecko.com](https://www.coingecko.com/).
+* This project will involve building a command line tool that interacts with the API of [Coingecko.com](https://www.coingecko.com/)  
 
-* The command line tool will display the top trending cryptocurrencies for any given day.
+* Full documentation of Coingecko's API can be found at https://www.coingecko.com/en/api/documentation
 
-* This README will update as the project progresses. 
+* The 'search/trending' endpoint of the API gives the top 7 most searched cryptocurrencies within the last 24 hours
+
+* **This README will update as the project progresses** 
+
+## Steps taken (note to self; will remove later)
+
+API:
+- [x] Find API baseurl and endpoint for trending cryptocurrencies
+- [x] Define a function that will return the json format of the data
+
+Command Line Tool:
