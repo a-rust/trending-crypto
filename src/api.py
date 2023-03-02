@@ -1,7 +1,6 @@
 # requests is the package for interacting with APIs
 import requests
 
-
 # Refer to https://www.coingecko.com/en/api/documentation for complete api documentation
 # The baseurl for the Coingecko api
 coin_gecko_baseurl = 'https://api.coingecko.com/api/v3/'
@@ -19,4 +18,17 @@ def api_request(baseurl, endpoint):
     return entire_request.json()
 
 
-# Todo: function that puts each item in a dictionary
+# Empty list to store the id (name) of each cryptocurrency
+list = []
+
+
+# Function that loops through the json result of the API request, and appends each coin id to the list
+def format_data(entire_request):
+    for coin in entire_request['coins']:
+        list.append(coin['item']['id'])
+    return
+
+
+# Filling list with current trending cryptocurrencies
+entire_request = api_request(coin_gecko_baseurl, coin_gecko_endpoint)
+format_data(entire_request)

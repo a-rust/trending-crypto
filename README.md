@@ -17,5 +17,7 @@ This is an educational project for me to learn and apply ideas involving http an
 API:
 - [x] Find API baseurl and endpoint for trending cryptocurrencies
 - [x] Define a function that will return the json format of the data
+- [x] Define an empty list, and a function that will store the id (name) of each trending cryptocurrency in that list
+
 
 Command Line Tool:
