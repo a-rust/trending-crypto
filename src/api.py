@@ -1,13 +1,6 @@
 # requests is the package for interacting with APIs
 import requests
 
-# Refer to https://www.coingecko.com/en/api/documentation for complete api documentation
-# The baseurl for the Coingecko api
-coin_gecko_baseurl = 'https://api.coingecko.com/api/v3/'
-
-# The search/trending endpoint gives the top 7 most searched cryptocurrencies within the last 24 hours, in order
-coin_gecko_endpoint = 'search/trending'
-
 
 # Function for making a request to the API address
 def api_request(baseurl, endpoint):
@@ -18,17 +11,36 @@ def api_request(baseurl, endpoint):
     return entire_request.json()
 
 
-# Empty list to store the id (name) of each cryptocurrency
-list = []
-
-
-# Function that loops through the json result of the API request, and appends each coin id to the list
-def format_data(entire_request):
+# Function that loops through the json result of the API request, and appends each cryptocurrency id to the list
+def order_by_searches(entire_request):
+    list = []
     for coin in entire_request['coins']:
         list.append(coin['item']['id'])
-    return
+    return list
 
 
-# Filling list with current trending cryptocurrencies
-entire_request = api_request(coin_gecko_baseurl, coin_gecko_endpoint)
-format_data(entire_request)
+# Get the price each cryptocurrency C in terms of btc (i.e., how much btc can be bought with C)
+def get_price_in_btc(entire_request):
+    list = []
+    for coin in entire_request['coins']:
+        list.append(coin['item']['price_btc'])
+    return list
+
+
+# Gets the current price of btc
+def get_current_btc_price():
+    baseurl = 'https://api.coingecko.com/api/v3/'
+    btc_endpoint = 'simple/price?ids=bitcoin&vs_currencies=usd'
+    return api_request(baseurl, btc_endpoint)['bitcoin']['usd']
+
+
+current_btc_price = get_current_btc_price()
+
+
+# Compute usd price of each cryptocurrency C := current btc price * price of C in terms of btc
+def compute_usd_price(entire_request):
+    list = []
+    for coin in entire_request['coins']:
+        usd_price = current_btc_price * coin['item']['price_btc']
+        list.append(usd_price)
+    return list
