@@ -23,7 +23,8 @@ parser = ArgumentParser()
 #   choices represents the query range (as there are only 7 top trending cryptocurrencies provided in the API)
 #   default is a way to keep track of whether the optional argument was called or not
 parser.add_argument(
-    '-n', '--number', help='Displays only the ID of nth top trending cryptocurrency', type=int, choices=[1, 2, 3, 4, 5, 6, 7], default=False)
+    '-n', '--number', help='Displays only the nth top trending cryptocurrency', type=int, choices=[1, 2, 3, 4, 5, 6, 7], default=False)
+
 
 # Namespace for arguments
 args = parser.parse_args()
