@@ -1,33 +1,48 @@
 from argparse import ArgumentParser
-from api import *
+from trending_endpoint import *
 
-# Refer to https://www.coingecko.com/en/api/documentation for complete api documentation
-# The baseurl for the Coingecko api
-coin_gecko_baseurl = 'https://api.coingecko.com/api/v3/'
 
-# The search/trending endpoint gives the top 7 most searched cryptocurrencies within the last 24 hours, in order
-coin_gecko_endpoint = 'search/trending'
+# Display the top trending data (id, btc_price, usd_pricein a nicely formatted manner
+def display_full_data():
+    print('--- --- --- --- ---')
+    for n in range(1, 8, 1):
+        print(f'Rank #{n} Top Trending Cryptocurrency on CoinGecko (ID): ' +
+              str(ordered_list[n-1]))
+        print(
+            f'BTC Price of {str(ordered_list[n-1])}: ' + str(btc_ordered_list[n-1]))
+        print(
+            f'USD Price of {str(ordered_list[n-1])}: ' + str(usd_ordered_list[n-1]))
+        print('--- --- --- --- ---')
 
-# The entire API request
-entire_request = api_request(coin_gecko_baseurl, coin_gecko_endpoint)
 
 parser = ArgumentParser()
 
 # No need for positional argument, as there is just a summary of external information
 
-# Optional argument to display the nth top trending cryptocurrency
+# Optional argument to display the nth top trending cryptocurrency, along with BTC and USD prices
+#   choices represents the query range (as there are only 7 top trending cryptocurrencies provided in the API)
+#   default is a way to keep track of whether the optional argument was called or not
 parser.add_argument(
-    '-n', '--number', help='Displays the nth top trending cryptocurrency', type=int, choices=[1, 2, 3, 4, 5, 6, 7])
-
-# No need for verbose description
+    '-n', '--number', help='Displays only the ID of nth top trending cryptocurrency', type=int, choices=[1, 2, 3, 4, 5, 6, 7], default=False)
 
 # Namespace for arguments
 args = parser.parse_args()
 
-# The ordered list of the top trending cryptocurrencies
-ordered_list = order_by_searches(entire_request)
 
 # Functionality of optional argument '-n', '--number'
-for n in range(1, 7, 1):
-    if args.number == n:
-        print(ordered_list[n+1])
+def nth_crypto():
+    for n in range(1, 8, 1):
+        if args.number == n:
+            print(f'Rank #{n} Top Trending Cryptocurrency on CoinGecko (ID): ' +
+                  str(ordered_list[n-1]))
+            print(
+                f'BTC Price of {str(ordered_list[n-1])}: ' + str(btc_ordered_list[n-1]))
+            print(
+                f'USD Price of {str(ordered_list[n-1])}: ' + str(usd_ordered_list[n-1]))
+
+
+# If the optional argument '-n' (or '--number') is not provided, then the full data containing all of the top trending cryptocurrencies will be displayed
+if args.number == False:
+    display_full_data()
+else:
+    nth_crypto()
