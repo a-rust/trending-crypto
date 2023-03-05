@@ -8,7 +8,7 @@ This project involved building a command line interface (CLI) tool that interact
 More specifically, this CLI tool interacts with the 'search/trending' endpoint, which is a get request that returns basic information regarding the current "trending cryptocurrencies"
   * CoinGecko API defines the current trending cryptocurrencies as the 7 most searched cryptocurrencies on CoinGecko within the last 24 hours (ordered by most popular first).
 
-**Remark**: The public API version of Coingecko (which this project utilizes) has a rate limit of 10-50 requests per hour
+**Remark**: The public API version of Coingecko (which this project utilizes) has a rate limit of 10-50 requests per minute
 * This CLI tool makes just one request to access the 'search/trending' endpoint, so a single daily check using this tool shouldn't be a problem regarding the request rate limit
 
 ## Python packages used
@@ -27,7 +27,7 @@ BTC Price of baby-doge-coin: 1.1399609729552157e-13
 USD Price of baby-doge-coin: 2.532081313128125e-09
 ```
 
-## Usage
+## How to use
 1. Clone this repo:  
 ```
 git clone https://github.com/a-rust/trending-crypto.git  
