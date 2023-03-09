@@ -1,33 +1,35 @@
 # Trending Cryptocurrencies
+
+## Overview 
 This was an educational project for me to learn and apply ideas involving http and API requests using the requests package, and building command line tools using the argparse package. 
 
 ## Project Description
-This project involved building a command line interface (CLI) tool that interacts with the API of [Coingecko.com](https://www.coingecko.com/)
+A command line interface (CLI) tool that interacts with the API of [Coingecko.com](https://www.coingecko.com/)
   * Full documentation of Coingecko's API can be found at https://www.coingecko.com/en/api/documentation
 
-More specifically, this CLI tool interacts with the 'search/trending' endpoint, which is a get request that returns basic information regarding the current "trending cryptocurrencies"
-  * CoinGecko API defines the current trending cryptocurrencies as the 7 most searched cryptocurrencies on CoinGecko within the last 24 hours (ordered by most popular first).
+In particular, this CLI tool interacts with the API using the 'search/trending' endpoint, which returns basic information regarding the current "trending cryptocurrencies"
+  * CoinGecko API defines the current trending cryptocurrencies as the 7 most searched cryptocurrencies on CoinGecko within the last 24 hours (ordered by most popular first)
 
-**Remark**: The public API version of Coingecko (which this project utilizes) has a rate limit of 10-50 requests per minute
-* This CLI tool makes just one request to access the 'search/trending' endpoint, so a single daily check using this tool shouldn't be a problem regarding the request rate limit
 
-## Python packages used
-* requests - for making requests to the CoinGecko API
-* argparse - for creating the CLI tool
+# Dependencies
+* Python packages:
+  * requests - for making requests to the CoinGecko API
+  * argparse - for creating the CLI tool
 
-## Features of this CLI tool
-* By default, lists the top 7 trending cryptocurrencies (ID, price in BTC, and price in USD)
-* Optional argument to query the $n$th top trending cryptocurrency (returns ID, price in BTC, and price in USD)
+# Features
+- [x] By default (no arguments), this CLI tool lists the top 7 trending cryptocurrencies (ID, price in BTC, and price in USD)
+- [x] Optional argument to query for a single top trending cryptocurrency (within the top 7)
 
-## Example
+# Demo
 ```
-$ python3 ./src/main.py -n 2
-Rank #2 Top Trending Cryptocurrency on CoinGecko (ID): baby-doge-coin
-BTC Price of baby-doge-coin: 1.1399609729552157e-13
-USD Price of baby-doge-coin: 2.532081313128125e-09
+python3 src/main.py -n 2
+# Output:
+# Rank #2 Top Trending Cryptocurrency on CoinGecko (ID): hedera-hashgraph
+# BTC Price of hedera-hashgraph: 2.751284513321697e-06
+# USD Price of hedera-hashgraph: 0.05585107562043045
 ```
 
-## How to use
+# How to use
 1. Clone this repo:  
 ```
 git clone https://github.com/a-rust/trending-crypto.git  
@@ -37,10 +39,3 @@ cd trending-crypto
 ```
 python3 ./src/main.py -h
 ```
-
-
-
-
-
-
-
